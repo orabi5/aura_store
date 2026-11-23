@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AURA — Modern Tech & Lifestyle Store</title>
+  <meta name="description" content="Minimalist gear, studio audio, and everyday workspace essentials engineered for creators." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --emerald: #10b981;
+      --emerald-soft: rgba(16, 185, 129, 0.14);
+      --blue: #3b82f6;
+      --blue-soft: rgba(59, 130, 246, 0.14);
+      --amber: #f59e0b;
+      --amber-soft: rgba(245, 158, 11, 0.14);
+
+      --bg: #090b10;
+      --bg-elevated: #11151f;
+      --bg-card: #141925;
+      --bg-card-hover: #1a2132;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.16);
+      --text: #f3f5f8;
+      --text-muted: #9ca3af;
+      --text-subtle: #6b7280;
+      --nav-bg: rgba(9, 11, 16, 0.82);
+      --shadow: 0 22px 45px -15px rgba(0, 0, 0, 0.65);
+    }
+
+    [data-theme="light"] {
+      --bg: #f8fafc;
+      --bg-elevated: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --border: rgba(15, 23, 42, 0.09);
+      --border-strong: rgba(15, 23, 42, 0.18);
+      --text: #0f172a;
+      --text-muted: #475569;
+      --text-subtle: #64748b;
+      --nav-bg: rgba(248, 250, 252, 0.85);
+      --shadow: 0 18px 40px -15px rgba(15, 23, 42, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    body {
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(circle at 10% 8%, rgba(16, 185, 129, 0.08), transparent 34%),
+        radial-gradient(circle at 90% 15%, rgba(59, 130, 246, 0.08), transparent 34%),
+        radial-gradient(circle at 50% 85%, rgba(245, 158, 11, 0.05), transparent 40%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font-family: inherit; }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Top Promo Bar */
+    .promo-bar {
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.18), rgba(59, 130, 246, 0.18));
+      border-bottom: 1px solid var(--border);
+      font-size: 0.82rem;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      color: var(--text);
+    }
+
+    .promo-code-chip {
+      display: inline-block;
+      margin-left: 0.4rem;
+      padding: 0.12rem 0.5rem;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 0.76rem;
+      background: var(--amber-soft);
+      color: var(--amber);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      cursor: pointer;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--emerald), var(--blue));
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.28);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .search-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-box input {
+      width: 210px;
+      padding: 0.52rem 0.85rem 0.52rem 2.25rem;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text);
+      font-size: 0.86rem;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .search-box input:focus {
+      width: 250px;
+      border-color: var(--blue);
+    }
+
+    .search-box svg {
+      position: absolute;
+      left: 0.72rem;
+      color: var(--text-subtle);
+      pointer-events: none;
+    }
+
+    .icon-btn {
+      position: relative;
+      height: 40px;
+      min-width: 40px;
+      padding: 0 0.75rem;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .icon-btn:hover {
+      border-color: var(--emerald);
+      transform: translateY(-1px);
+    }
+
+    .cart-badge {
+      background: var(--emerald);
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 4rem 0 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.95fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.38rem 0.85rem;
+      border-radius: 999px;
+      background: var(--emerald-soft);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--emerald);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2.35rem, 4.8vw, 3.75rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.1rem;
+    }
+
+    .gradient-text {
+      background: linear-gradient(120deg, var(--emerald) 0%, var(--blue) 55%, var(--amber) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin-bottom: 1.85rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.82rem 1.45rem;
+      border-radius: 12px;
+      font-size: 0.94rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--emerald), var(--blue));
+      color: #fff;
+      box-shadow: 0 12px 26px -8px rgba(16, 185, 129, 0.5);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.06);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--blue);
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+    }
+
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .trust-item strong {
+      display: block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+
+    .trust-item span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Hero Spotlight Card */
+    .spotlight-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 26px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .spotlight-visual {
+      height: 270px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(16, 185, 129, 0.18), rgba(59, 130, 246, 0.22));
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+
+    .spotlight-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 0.3rem 0.7rem;
+      border-radius: 8px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-strong);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--amber);
+    }
+
+    .spotlight-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .spotlight-meta h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .spotlight-meta p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .price-tag {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--emerald);
+      white-space: nowrap;
+    }
+
+    /* Sections */
+    section { padding: 3.5rem 0; }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-kicker {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--blue);
+      margin-bottom: 0.3rem;
+    }
+
+    .section-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.15rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    /* Category Bento */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.15rem;
+    }
+
+    .cat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.35rem;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      text-align: left;
+    }
+
+    .cat-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--emerald);
+      background: var(--bg-card-hover);
+    }
+
+    .cat-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 0.9rem;
+    }
+
+    .cat-icon.emerald { background: var(--emerald-soft); color: var(--emerald); }
+    .cat-icon.blue { background: var(--blue-soft); color: var(--blue); }
+    .cat-icon.amber { background: var(--amber-soft); color: var(--amber); }
+
+    .cat-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .cat-card span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Filter Pills */
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .pill-btn {
+      padding: 0.45rem 0.95rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .pill-btn:hover { color: var(--text); border-color: var(--border-strong); }
+
+    .pill-btn.active {
+      background: var(--emerald-soft);
+      color: var(--emerald);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+    }
+
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-strong);
+      box-shadow: var(--shadow);
+    }
+
+    .product-thumb {
+      height: 200px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .badge-pill {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 0.25rem 0.62rem;
+      border-radius: 7px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-strong);
+    }
+
+    .badge-pill.sale { color: var(--amber); border-color: rgba(245, 158, 11, 0.35); }
+    .badge-pill.new { color: var(--emerald); border-color: rgba(16, 185, 129, 0.35); }
+
+    .product-body {
+      padding: 1.35rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-cat {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      color: var(--text-subtle);
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .product-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.12rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      cursor: pointer;
+    }
+
+    .product-title:hover { color: var(--blue); }
+
+    .product-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 1.15rem;
+      flex: 1;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .price-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 0.45rem;
+    }
+
+    .price-current {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+
+    .price-old {
+      font-size: 0.84rem;
+      color: var(--text-subtle);
+      text-decoration: line-through;
+    }
+
+    .add-btn {
+      padding: 0.55rem 0.95rem;
+      border-radius: 10px;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      background: var(--emerald-soft);
+      color: var(--emerald);
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .add-btn:hover {
+      background: var(--emerald);
+      color: #fff;
+    }
+
+    /* Deal Banner */
+    .deal-banner {
+      border-radius: 24px;
+      padding: 2.4rem;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(59, 130, 246, 0.18));
+      border: 1px solid var(--border-strong);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .deal-banner h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+    }
+
+    .deal-banner p {
+      color: var(--text-muted);
+      max-width: 520px;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .time-box {
+      min-width: 68px;
+      padding: 0.75rem;
+      border-radius: 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      text-align: center;
+    }
+
+    .time-box strong {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.35rem;
+      color: var(--amber);
+    }
+
+    .time-box span {
+      font-size: 0.72rem;
+      color: var(--text-subtle);
+      text-transform: uppercase;
+    }
+
+    /* Reviews */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .review-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.45rem;
+    }
+
+    .stars {
+      color: var(--amber);
+      letter-spacing: 2px;
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .review-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .reviewer {
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+
+    .reviewer span {
+      display: block;
+      font-weight: 400;
+      font-size: 0.78rem;
+      color: var(--text-subtle);
+    }
+
+    /* Slide-Over Cart Drawer */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 120;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .drawer-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 420px;
+      background: var(--bg-elevated);
+      border-left: 1px solid var(--border-strong);
+      z-index: 130;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .cart-drawer.open { transform: translateX(0); }
+
+    .drawer-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .drawer-header h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .shipping-meter {
+      padding: 0.85rem 1.5rem;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.82rem;
+    }
+
+    .meter-track {
+      height: 6px;
+      border-radius: 999px;
+      background: var(--border-strong);
+      margin-top: 0.45rem;
+      overflow: hidden;
+    }
+
+    .meter-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--emerald), var(--blue));
+      transition: width 0.3s ease;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .cart-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.85rem;
+      padding: 0.85rem;
+      border-radius: 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+    }
+
+    .cart-row-info strong {
+      display: block;
+      font-size: 0.92rem;
+    }
+
+    .cart-row-info span {
+      font-size: 0.82rem;
+      color: var(--emerald);
+      font-weight: 600;
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .qty-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .drawer-footer {
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+
+    .promo-input-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .promo-input-row input {
+      flex: 1;
+      padding: 0.55rem 0.8rem;
+      border-radius: 10px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.85rem;
+    }
+
+    .subtotal-line {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.4rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .total-line {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin: 0.65rem 0 1rem;
+    }
+
+    /* Quick View Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 140;
+      display: none;
+      place-items: center;
+      padding: 1.25rem;
+      background: rgba(0, 0, 0, 0.68);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal.open { display: grid; }
+
+    .modal-card {
+      width: 100%;
+      max-width: 520px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-strong);
+      border-radius: 22px;
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      z-index: 160;
+      padding: 0.8rem 1.2rem;
+      border-radius: 12px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--emerald);
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+      transform: translateY(130%);
+      transition: transform 0.25s ease;
+    }
+
+    .toast.show { transform: translateY(0); }
+
+    /* Footer */
+    footer {
+      margin-top: 3rem;
+      padding: 3rem 0 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1.3fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-col h4 {
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.96rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .footer-col a:hover { color: var(--emerald); }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 0.6rem 0.85rem;
+      border-radius: 10px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-card);
+      color: var(--text);
+      font-size: 0.86rem;
+    }
+
+    .footer-bottom {
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .footer-grid { grid-template-columns: 1fr; }
+      .category-grid { grid-template-columns: repeat(2, 1fr); }
+      .product-grid,
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 620px) {
+      .category-grid,
+      .product-grid,
+      .reviews-grid { grid-template-columns: 1fr; }
+      .search-box input { width: 140px; }
+      .search-box input:focus { width: 170px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Promo Bar -->
+  <div class="promo-bar">
+    Free express shipping on orders over $120 • Use code
+    <button type="button" class="promo-code-chip" id="copyPromoChip" title="Click to copy">SAVE15</button>
+    for 15% off
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav-inner">
+      <a href="#top" class="brand">
+        <span class="brand-icon">A</span>
+        <span>AURA</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#catalog">Shop All</a></li>
+        <li><a href="#deals">Flash Deal</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+      </ul>
+
+      <div class="nav-controls">
+        <div class="search-box">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="search" id="searchInput" placeholder="Search gear..." aria-label="Search products" />
+        </div>
+
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle theme" title="Switch Theme">
+          <svg id="sunIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+          </svg>
+          <svg id="moonIcon" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <button class="icon-btn" id="openCartBtn" aria-label="Open shopping cart">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-badge" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">2026 STUDIO COLLECTION • IN STOCK</span>
+          <h1>
+            Precision Gear for <br />
+            <span class="gradient-text">Modern Creators.</span>
+          </h1>
+          <p>
+            Upgrade your daily workflow with acoustic-grade wireless audio, tactile mechanical keyboards, and minimalist desk hardware built to last.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#catalog" class="btn btn-primary">Shop Collection</a>
+            <a href="#deals" class="btn btn-secondary">View Bundle Deals</a>
+          </div>
+
+          <div class="trust-strip">
+            <div class="trust-item">
+              <strong>4.9 / 5.0</strong>
+              <span>12,400+ Verified Reviews</span>
+            </div>
+            <div class="trust-item">
+              <strong>24 Hours</strong>
+              <span>Same-Day Warehouse Dispatch</span>
+            </div>
+            <div class="trust-item">
+              <strong>2-Year</strong>
+              <span>Hardware Replacement Warranty</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="spotlight-card">
+          <div class="spotlight-visual">
+            <span class="spotlight-tag">BESTSELLER • #1</span>
+            <svg width="170" height="170" viewBox="0 0 200 200" fill="none">
+              <defs>
+                <linearGradient id="heroGrad" x1="20" y1="20" x2="180" y2="180" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#10b981"/>
+                  <stop offset="1" stop-color="#3b82f6"/>
+                </linearGradient>
+              </defs>
+              <path d="M40 115V98C40 64.8629 66.8629 38 100 38C133.137 38 160 64.8629 160 98V115" stroke="url(#heroGrad)" stroke-width="14" stroke-linecap="round"/>
+              <rect x="24" y="102" width="32" height="58" rx="16" fill="#1e293b" stroke="#10b981" stroke-width="4"/>
+              <rect x="144" y="102" width="32" height="58" rx="16" fill="#1e293b" stroke="#3b82f6" stroke-width="4"/>
+              <circle cx="100" cy="100" r="82" stroke="rgba(255,255,255,0.08)" stroke-width="2" stroke-dasharray="6 6"/>
+            </svg>
+          </div>
+          <div class="spotlight-meta">
+            <div>
+              <h3>Aura Studio ANC Pro</h3>
+              <p>45h battery • Spatial lossless wireless audio</p>
+            </div>
+            <div style="text-align:right;">
+              <span class="price-tag">$189</span>
+              <div style="margin-top:0.35rem;">
+                <button class="add-btn" onclick="addToCart(1)">+ Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section id="categories">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker">Browse By Department</span>
+            <h2 class="section-title">Curated Categories</h2>
+          </div>
+        </div>
+
+        <div class="category-grid">
+          <button class="cat-card" onclick="selectCategory('Audio')">
+            <div class="cat-icon emerald">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+              </svg>
+            </div>
+            <h3>Studio Audio</h3>
+            <span>Headphones & Desktop Monitors</span>
+          </button>
+
+          <button class="cat-card" onclick="selectCategory('Workspace')">
+            <div class="cat-icon blue">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <line x1="6" y1="9" x2="6" y2="9"></line>
+                <line x1="10" y1="9" x2="10" y2="9"></line>
+                <line x1="14" y1="9" x2="14" y2="9"></line>
+                <line x1="7" y1="15" x2="17" y2="15"></line>
+              </svg>
+            </div>
+            <h3>Workspace Gear</h3>
+            <span>Keyboards, Mice & Desk Mats</span>
+          </button>
+
+          <button class="cat-card" onclick="selectCategory('Power')">
+            <div class="cat-icon amber">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <h3>GaN Power & Hubs</h3>
+            <span>Fast Chargers & USB-C Docks</span>
+          </button>
+
+          <button class="cat-card" onclick="selectCategory('All')">
+            <div class="cat-icon emerald">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+            </div>
+            <h3>All Products</h3>
+            <span>Explore Full 2026 Lineup</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Catalog -->
+    <section id="catalog">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker">Featured Storefront</span>
+            <h2 class="section-title">Trending Essentials</h2>
+          </div>
+
+          <div class="filter-pills" id="filterPills">
+            <button class="pill-btn active" data-cat="All">All</button>
+            <button class="pill-btn" data-cat="Audio">Audio</button>
+            <button class="pill-btn" data-cat="Workspace">Workspace</button>
+            <button class="pill-btn" data-cat="Power">Power</button>
+          </div>
+        </div>
+
+        <div class="product-grid" id="productGrid"></div>
+      </div>
+    </section>
+
+    <!-- Flash Deal Banner -->
+    <section id="deals">
+      <div class="container">
+        <div class="deal-banner">
+          <div>
+            <span class="section-kicker" style="color:var(--amber);">LIMITED WEEKEND DROP</span>
+            <h2>Save 15% on Any Desk Setup Bundle</h2>
+            <p>Combine any mechanical keyboard with a GaN dock or wireless headset and apply promo code <strong>SAVE15</strong> inside your cart.</p>
+          </div>
+
+          <div class="countdown" aria-label="Deal countdown timer">
+            <div class="time-box"><strong id="cdHours">14</strong><span>Hours</span></div>
+            <div class="time-box"><strong id="cdMins">38</strong><span>Mins</span></div>
+            <div class="time-box"><strong id="cdSecs">52</strong><span>Secs</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section id="reviews">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-kicker">Social Proof</span>
+            <h2 class="section-title">Trusted by Developers & Designers</h2>
+          </div>
+        </div>
+
+        <div class="reviews-grid">
+          <article class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>“The Tactile 75 keyboard has the cleanest acoustic profile out of the box—no modding needed. Battery easily lasts three weeks.”</p>
+            <div class="reviewer">Tariq Hasan<span>Full-Stack Engineer</span></div>
+          </article>
+
+          <article class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>“Aura Studio ANC blocks out cafe noise completely while staying lightweight enough for 8-hour design sprints.”</p>
+            <div class="reviewer">Nadia Chowdhury<span>UI/UX Designer</span></div>
+          </article>
+
+          <article class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>“One 140W GaN hub replaced three separate chargers on my desk. Fast shipping and solid aluminum build quality.”</p>
+            <div class="reviewer">Rafiul Islam<span>Software Architect</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="#top" class="brand" style="margin-bottom:0.75rem;">
+            <span class="brand-icon">A</span>
+            <span>AURA</span>
+          </a>
+          <p>Minimalist hardware and studio accessories designed for focus, durability, and clean desk setups.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#catalog" onclick="selectCategory('Audio')">Studio Audio</a></li>
+            <li><a href="#catalog" onclick="selectCategory('Workspace')">Workspace Gear</a></li>
+            <li><a href="#catalog" onclick="selectCategory('Power')">GaN Power & Hubs</a></li>
+            <li><a href="#deals">Bundle Offers</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#top">Shipping & Returns</a></li>
+            <li><a href="#top">2-Year Warranty</a></li>
+            <li><a href="#top">Track Order</a></li>
+            <li><a href="#top">Contact Support</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Get Early Drop Alerts</h4>
+          <p>Join 18,000+ subscribers for restock notices and member discounts.</p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="you@example.com" required />
+            <button type="submit" class="btn btn-primary" style="padding:0.6rem 1rem;">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> AURA Commerce. All rights reserved.</span>
+        <span>SSL Encrypted Checkout • Worldwide Express Delivery</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping Cart">
+    <div class="drawer-header">
+      <h3>Your Cart</h3>
+      <button class="icon-btn" id="closeCartBtn" aria-label="Close cart">✕</button>
+    </div>
+
+    <div class="shipping-meter">
+      <span id="shippingText">Add $120.00 more for FREE express shipping</span>
+      <div class="meter-track"><div class="meter-fill" id="shippingFill"></div></div>
+    </div>
+
+    <div class="cart-items" id="cartItemsContainer"></div>
+
+    <div class="drawer-footer">
+      <div class="promo-input-row">
+        <input type="text" id="promoInput" placeholder="Promo code (try SAVE15)" />
+        <button type="button" class="btn btn-secondary" style="padding:0.5rem 0.9rem;" id="applyPromoBtn">Apply</button>
+      </div>
+      <div class="subtotal-line"><span>Subtotal</span><span id="subtotalText">$0.00</span></div>
+      <div class="subtotal-line"><span>Discount</span><span id="discountText" style="color:var(--emerald);">-$0.00</span></div>
+      <div class="total-line"><span>Total</span><span id="totalText">$0.00</span></div>
+      <button type="button" class="btn btn-primary" style="width:100%;" id="checkoutBtn">Proceed to Checkout</button>
+    </div>
+  </aside>
+
+  <!-- Quick View Modal -->
+  <div class="modal" id="quickViewModal">
+    <div class="modal-card" id="modalContent"></div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">Added to cart</div>
+
+  <script>
+    const PRODUCTS = [
+      {
+        id: 1,
+        name: "Aura Studio ANC Pro",
+        category: "Audio",
+        price: 189,
+        oldPrice: 229,
+        badge: "BESTSELLER",
+        badgeType: "sale",
+        desc: "Hybrid active noise cancellation, 40mm custom bio-cellulose drivers, and 45-hour battery life.",
+        color: "#10b981",
+        svg: `<svg width="110" height="110" viewBox="0 0 200 200" fill="none"><path d="M42 115V98C42 65.9675 67.9675 40 100 40C132.033 40 158 65.9675 158 98V115" stroke="#10b981" stroke-width="14" stroke-linecap="round"/><rect x="26" y="102" width="30" height="56" rx="15" fill="#1e293b" stroke="#10b981" stroke-width="4"/><rect x="144" y="102" width="30" height="56" rx="15" fill="#1e293b" stroke="#3b82f6" stroke-width="4"/></svg>`
+      },
+      {
+        id: 2,
+        name: "KeyChronos 75 Mechanical",
+        category: "Workspace",
+        price: 149,
+        oldPrice: null,
+        badge: "NEW",
+        badgeType: "new",
+        desc: "CNC aluminum 75% gasket-mounted keyboard with hot-swappable tactile switches and tri-mode wireless.",
+        color: "#3b82f6",
+        svg: `<svg width="130" height="110" viewBox="0 0 220 160" fill="none"><rect x="18" y="34" width="184" height="92" rx="14" fill="#1e293b" stroke="#3b82f6" stroke-width="4"/><rect x="34" y="50" width="22" height="18" rx="4" fill="#3b82f6"/><rect x="62" y="50" width="22" height="18" rx="4" fill="#334155"/><rect x="90" y="50" width="22" height="18" rx="4" fill="#334155"/><rect x="118" y="50" width="22" height="18" rx="4" fill="#334155"/><rect x="146" y="50" width="40" height="18" rx="4" fill="#10b981"/><rect x="34" y="76" width="34" height="18" rx="4" fill="#334155"/><rect x="74" y="76" width="76" height="18" rx="4" fill="#475569"/><rect x="156" y="76" width="30" height="18" rx="4" fill="#334155"/><rect x="58" y="100" width="104" height="14" rx="4" fill="#3b82f6"/></svg>`
+      },
+      {
+        id: 3,
+        name: "VoltCore 140W GaN Dock",
+        category: "Power",
+        price: 95,
+        oldPrice: 119,
+        badge: "20% OFF",
+        badgeType: "sale",
+        desc: "4-port USB-C PD 3.1 desktop charging station with live OLED wattage readout and braided cable.",
+        color: "#f59e0b",
+        svg: `<svg width="110" height="110" viewBox="0 0 200 200" fill="none"><rect x="48" y="36" width="104" height="128" rx="20" fill="#1e293b" stroke="#f59e0b" stroke-width="4"/><polygon points="104 58 80 104 100 104 94 142 122 94 102 94 104 58" fill="#f59e0b"/></svg>`
+      },
+      {
+        id: 4,
+        name: "GlidePro Ergonomic Mouse",
+        category: "Workspace",
+        price: 79,
+        oldPrice: null,
+        badge: "NEW",
+        badgeType: "new",
+        desc: "58g ultralight wireless mouse with 26K optical sensor, magnetic charging dock, and silent clicks.",
+        color: "#10b981",
+        svg: `<svg width="110" height="110" viewBox="0 0 200 200" fill="none"><rect x="64" y="32" width="72" height="136" rx="36" fill="#1e293b" stroke="#10b981" stroke-width="4"/><line x1="100" y1="32" x2="100" y2="86" stroke="#10b981" stroke-width="3"/><rect x="94" y="52" width="12" height="24" rx="6" fill="#3b82f6"/></svg>`
+      },
+      {
+        id: 5,
+        name: "PulsePod Mini Earbuds",
+        category: "Audio",
+        price: 119,
+        oldPrice: 139,
+        badge: "SAVE $20",
+        badgeType: "sale",
+        desc: "Pocket-sized aluminum charging case, adaptive transparency mode, and IPX5 sweat resistance.",
+        color: "#3b82f6",
+        svg: `<svg width="110" height="110" viewBox="0 0 200 200" fill="none"><rect x="44" y="54" width="112" height="96" rx="28" fill="#1e293b" stroke="#3b82f6" stroke-width="4"/><line x1="44" y1="94" x2="156" y2="94" stroke="#3b82f6" stroke-width="3"/><circle cx="100" cy="118" r="6" fill="#10b981"/></svg>`
+      },
+      {
+        id: 6,
+        name: "MagCharge 3-in-1 Stand",
+        category: "Power",
+        price: 89,
+        oldPrice: null,
+        badge: "POPULAR",
+        badgeType: "new",
+        desc: "Weighted zinc-alloy magnetic charging stand for phone, smartwatch, and wireless earbuds.",
+        color: "#f59e0b",
+        svg: `<svg width="110" height="110" viewBox="0 0 200 200" fill="none"><ellipse cx="100" cy="162" rx="48" ry="12" fill="#334155" stroke="#f59e0b" stroke-width="3"/><line x1="100" y1="160" x2="100" y2="84" stroke="#94a3b8" stroke-width="8" stroke-linecap="round"/><circle cx="100" cy="74" r="34" fill="#1e293b" stroke="#10b981" stroke-width="4"/></svg>`
+      }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem("aura-cart") || "[]");
+    let activeCategory = "All";
+    let searchQuery = "";
+    let discountRate = 0;
+
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Theme Toggle
+    const htmlEl = document.documentElement;
+    const sunIcon = document.getElementById("sunIcon");
+    const moonIcon = document.getElementById("moonIcon");
+
+    function setTheme(theme) {
+      htmlEl.setAttribute("data-theme", theme);
+      localStorage.setItem("aura-theme", theme);
+      sunIcon.style.display = theme === "dark" ? "block" : "none";
+      moonIcon.style.display = theme === "light" ? "block" : "none";
+    }
+    setTheme(localStorage.getItem("aura-theme") || "dark");
+
+    document.getElementById("themeToggle").addEventListener("click", () => {
+      setTheme(htmlEl.getAttribute("data-theme") === "dark" ? "light" : "dark");
+    });
+
+    // Toast Helper
+    const toastEl = document.getElementById("toast");
+    let toastTimer;
+    function showToast(msg) {
+      toastEl.textContent = msg;
+      toastEl.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toastEl.classList.remove("show"), 2200);
+    }
+
+    // Copy Promo Chip
+    document.getElementById("copyPromoChip").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText("SAVE15");
+        showToast("Promo code SAVE15 copied!");
+      } catch {
+        showToast("Use code SAVE15 at checkout");
+      }
+    });
+
+    // Render Products
+    function renderProducts() {
+      const grid = document.getElementById("productGrid");
+      const filtered = PRODUCTS.filter(p => {
+        const matchesCat = activeCategory === "All" || p.category === activeCategory;
+        const matchesSearch = p.name.toLowerCase().includes(searchQuery) || p.desc.toLowerCase().includes(searchQuery);
+        return matchesCat && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<p style="color:var(--text-muted);grid-column:1/-1;text-align:center;padding:2rem 0;">No products matched your search. Try another keyword or reset filters.</p>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => `
+        <article class="product-card">
+          <div class="product-thumb" style="background:linear-gradient(145deg, ${p.color}22, rgba(15,23,42,0.2));" onclick="openQuickView(${p.id})">
+            <span class="badge-pill ${p.badgeType}">${p.badge}</span>
+            ${p.svg}
+          </div>
+          <div class="product-body">
+            <span class="product-cat">${p.category}</span>
+            <h3 class="product-title" onclick="openQuickView(${p.id})">${p.name}</h3>
+            <p class="product-desc">${p.desc}</p>
+            <div class="product-footer">
+              <div class="price-wrap">
+                <span class="price-current">$${p.price}</span>
+                ${p.oldPrice ? `<span class="price-old">$${p.oldPrice}</span>` : ""}
+              </div>
+              <button class="add-btn" onclick="addToCart(${p.id})">+ Add to Cart</button>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    // Category Selection
+    function selectCategory(cat) {
+      activeCategory = cat;
+      document.querySelectorAll(".pill-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.cat === cat);
+      });
+      renderProducts();
+      document.getElementById("catalog").scrollIntoView({ behavior: "smooth" });
+    }
+
+    document.querySelectorAll(".pill-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        activeCategory = btn.dataset.cat;
+        document.querySelectorAll(".pill-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderProducts();
+      });
+    });
+
+    // Search
+    document.getElementById("searchInput").addEventListener("input", e => {
+      searchQuery = e.target.value.trim().toLowerCase();
+      renderProducts();
+    });
+
+    // Cart Management
+    function saveCart() {
+      localStorage.setItem("aura-cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    function addToCart(productId) {
+      const existing = cart.find(item => item.id === productId);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ id: productId, qty: 1 });
+      }
+      saveCart();
+      const prod = PRODUCTS.find(p => p.id === productId);
+      showToast(`Added "${prod.name}" to cart`);
+    }
+
+    function changeQty(productId, delta) {
+      const item = cart.find(i => i.id === productId);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.id !== productId);
+      }
+      saveCart();
+    }
+
+    function renderCart() {
+      const countEl = document.getElementById("cartCount");
+      const container = document.getElementById("cartItemsContainer");
+      const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
+      countEl.textContent = totalItems;
+
+      if (cart.length === 0) {
+        container.innerHTML = `<p style="color:var(--text-muted);text-align:center;margin-top:3rem;">Your cart is empty. Explore the collection to add gear.</p>`;
+      } else {
+        container.innerHTML = cart.map(item => {
+          const p = PRODUCTS.find(prod => prod.id === item.id);
+          return `
+            <div class="cart-row">
+              <div class="cart-row-info">
+                <strong>${p.name}</strong>
+                <span>$${(p.price * item.qty).toFixed(2)} ($${p.price} each)</span>
+              </div>
+              <div class="qty-controls">
+                <button class="qty-btn" onclick="changeQty(${p.id}, -1)">−</button>
+                <span style="min-width:20px;text-align:center;font-weight:600;">${item.qty}</span>
+                <button class="qty-btn" onclick="changeQty(${p.id}, 1)">+</button>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      const subtotal = cart.reduce((sum, item) => {
+        const p = PRODUCTS.find(prod => prod.id === item.id);
+        return sum + p.price * item.qty;
+      }, 0);
+
+      const discount = subtotal * discountRate;
+      const total = Math.max(0, subtotal - discount);
+
+      document.getElementById("subtotalText").textContent = `$${subtotal.toFixed(2)}`;
+      document.getElementById("discountText").textContent = `-$${discount.toFixed(2)}`;
+      document.getElementById("totalText").textContent = `$${total.toFixed(2)}`;
+
+      // Free Shipping Progress ($120 goal)
+      const goal = 120;
+      const pct = Math.min(100, (subtotal / goal) * 100);
+      document.getElementById("shippingFill").style.width = `${pct}%`;
+      document.getElementById("shippingText").textContent = subtotal >= goal
+        ? "Unlocked! Your order qualifies for FREE express shipping."
+        : `Add $${(goal - subtotal).toFixed(2)} more for FREE express shipping`;
+    }
+
+    // Drawer Open / Close
+    const drawer = document.getElementById("cartDrawer");
+    const backdrop = document.getElementById("drawerBackdrop");
+    function toggleCart(open) {
+      drawer.classList.toggle("open", open);
+      backdrop.classList.toggle("open", open);
+    }
+    document.getElementById("openCartBtn").addEventListener("click", () => toggleCart(true));
+    document.getElementById("closeCartBtn").addEventListener("click", () => toggleCart(false));
+    backdrop.addEventListener("click", () => toggleCart(false));
+
+    // Apply Promo Code
+    document.getElementById("applyPromoBtn").addEventListener("click", () => {
+      const code = document.getElementById("promoInput").value.trim().toUpperCase();
+      if (code === "SAVE15") {
+        discountRate = 0.15;
+        renderCart();
+        showToast("15% discount applied!");
+      } else {
+        showToast("Invalid code — try SAVE15");
+      }
+    });
+
+    // Checkout Action
+    document.getElementById("checkoutBtn").addEventListener("click", () => {
+      if (cart.length === 0) {
+        showToast("Your cart is empty");
+        return;
+      }
+      cart = [];
+      discountRate = 0;
+      document.getElementById("promoInput").value = "";
+      saveCart();
+      toggleCart(false);
+      showToast("Order placed! Thank you for shopping with AURA.");
+    });
+
+    // Quick View Modal
+    const modal = document.getElementById("quickViewModal");
+    function openQuickView(id) {
+      const p = PRODUCTS.find(item => item.id === id);
+      document.getElementById("modalContent").innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+          <span class="section-kicker" style="margin:0;">${p.category}</span>
+          <button class="icon-btn" onclick="closeQuickView()">✕</button>
+        </div>
+        <div style="height:180px;border-radius:16px;background:var(--bg-card);border:1px solid var(--border);display:grid;place-items:center;margin-bottom:1.25rem;">
+          ${p.svg}
+        </div>
+        <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.4rem;margin-bottom:0.5rem;">${p.name}</h3>
+        <p style="color:var(--text-muted);font-size:0.94rem;margin-bottom:1.25rem;">${p.desc}</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:1.5rem;font-weight:800;color:var(--emerald);">$${p.price}.00</span>
+          <button class="btn btn-primary" onclick="addToCart(${p.id});closeQuickView();">Add to Cart</button>
+        </div>
+      `;
+      modal.classList.add("open");
+    }
+
+    function closeQuickView() { modal.classList.remove("open"); }
+    modal.addEventListener("click", e => { if (e.target === modal) closeQuickView(); });
+
+    // Newsletter
+    document.getElementById("newsletterForm").addEventListener("submit", e => {
+      e.preventDefault();
+      e.target.reset();
+      showToast("Subscribed! Check your inbox for 15% off.");
+    });
+
+    // Live Countdown Timer
+    let remainingSeconds = 14 * 3600 + 38 * 60 + 52;
+    setInterval(() => {
+      if (remainingSeconds <= 0) return;
+      remainingSeconds--;
+      const h = Math.floor(remainingSeconds / 3600);
+      const m = Math.floor((remainingSeconds % 3600) / 60);
+      const s = remainingSeconds % 60;
+      document.getElementById("cdHours").textContent = String(h).padStart(2, "0");
+      document.getElementById("cdMins").textContent = String(m).padStart(2, "0");
+      document.getElementById("cdSecs").textContent = String(s).padStart(2, "0");
+    }, 1000);
+
+    // Initial Render
+    renderProducts();
+    renderCart();
+  </script>
+</body>
+</html>
